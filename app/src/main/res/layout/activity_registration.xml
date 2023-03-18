@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration"
+    android:background="@color/light">
+
+    <ImageView
+        android:id="@+id/image"
+        android:src="@drawable/key2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="250dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="20dp"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/Loginreg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:hint="Логин"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:textColorHint="@color/dark_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawableLeft="@drawable/ic_baseline_login_24"
+                android:maxLength="25"
+                />
+
+            <EditText
+                android:id="@+id/Passwordreg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Loginreg"
+                android:layout_marginTop="30dp"
+                android:hint="Пароль"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_login_24"
+                android:maxLength="25"
+                />
+
+            <EditText
+                android:id="@+id/firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Passwordreg"
+                android:layout_marginTop="30dp"
+                android:hint="Фамилия"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:maxLength="30"
+                />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/firstname"
+                android:layout_marginTop="30dp"
+                android:hint="Имя"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:maxLength="30"
+                />
+
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                android:layout_marginTop="30dp"
+                android:hint="Отчество"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:maxLength="30"
+                />
+
+            <EditText
+                android:id="@+id/serpas"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastname"
+                android:layout_marginTop="30dp"
+                android:hint="Серия"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="number"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+                android:maxLength="4"
+                />
+
+            <EditText
+                android:id="@+id/numpas"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/serpas"
+                android:layout_marginTop="30dp"
+                android:hint="Номер"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="number"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+                android:maxLength="6"
+                />
+
+            <TextView
+                android:id="@+id/birthtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numpas"
+                android:layout_marginTop="30dp"
+                android:text="Дата рождения"
+                android:textSize="18dp"
+                android:textColor="@color/red"
+                />
+
+            <DatePicker
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/birthtext"
+                android:datePickerMode="spinner"
+                android:spinnersShown="true"
+                android:calendarViewShown="false"
+                />
+
+            <EditText
+                android:id="@+id/recedence"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/birthday"
+                android:layout_marginTop="30dp"
+                android:hint="  Адрес проживания"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_style"
+                android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+                />
+
+            <TextView
+                android:id="@+id/textissued"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recedence"
+                android:layout_marginTop="30dp"
+                android:text="Дата выдачи паспорта"
+                android:textSize="18dp"
+                android:textColor="@color/red"
+                />
+
+            <DatePicker
+                android:id="@+id/issuedday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/textissued"
+                android:datePickerMode="spinner"
+                android:spinnersShown="true"
+                android:calendarViewShown="false"
+                />
+
+            <EditText
+                android:id="@+id/issuedcode"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/issuedday"
+                android:layout_marginTop="30dp"
+                android:hint="Код подразделения"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+                android:maxLength="7"
+                />
+
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/issuedcode"
+                android:layout_marginTop="30dp"
+                android:hint="Номер телефона"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_phone_24"
+                />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone"
+                android:layout_marginTop="30dp"
+                android:hint="Почта (не обязательно)"
+                android:backgroundTint="@color/red"
+                android:textColorHint="@color/dark_red"
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:maxLength="30"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/default_button"
+                android:text="Регистрация"
+                android:textColor="@color/red"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ToAuthButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/default_button_1"
+        android:textSize="11dp"
+        android:text="Уже зарегистрированы?"
+        android:textColor="@color/red"
+        android:width="170dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
