@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.reflect.Array.get
 
-class TrainListAdapter (private val names: List<String>) :
+class TrainListAdapter (private val names: ArrayList<TrainsModel>) :
     RecyclerView.Adapter<TrainListAdapter.MyViewHolder>()  {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val num: TextView= itemView.findViewById(R.id.num_train)
@@ -17,8 +17,6 @@ class TrainListAdapter (private val names: List<String>) :
         val arrCity: TextView = itemView.findViewById(R.id.arr_city)
     }
 
-    private var groupList: ArrayList<TrainsModel>? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
@@ -27,7 +25,7 @@ class TrainListAdapter (private val names: List<String>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val trains: TrainsModel = groupList!!.get(position)
+        val trains: TrainsModel = names!![position]
         holder.num.text = trains.numTrain
         holder.depCity.text = trains.depCityTrain
         holder.arrCity.text = trains.arrCityTrain
@@ -36,6 +34,6 @@ class TrainListAdapter (private val names: List<String>) :
     }
 
     override fun getItemCount(): Int {
-        return names.size
+        return names.size   
     }
 }

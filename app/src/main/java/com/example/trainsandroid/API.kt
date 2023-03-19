@@ -19,4 +19,8 @@ interface API {
     @GET("Clients/{id}")
     fun getDataClient(@Path("id") id: Int, @Header("Authorization") token: String):
             Call<ClientsModel>
+
+    @GET("Trains")
+    fun getTrainsList(@Header("Authorization") token: String):
+            Call<ArrayList<TrainsModel>>
 }

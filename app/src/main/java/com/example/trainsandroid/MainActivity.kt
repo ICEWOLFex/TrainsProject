@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<TokenModel>, response: Response<TokenModel>) {
                 if(response.isSuccessful){
                     Paper.book("token").write("token", response.body()!!)
-                    val intent = Intent(applicationContext, MainProfile::class.java)
+                    val intent = Intent(applicationContext, OperationActivity::class.java)
                     startActivity(intent)
                 }
                 else{
