@@ -1,13 +1,12 @@
 package com.example.trainsandroid
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +27,8 @@ class Registration : AppCompatActivity() {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
+
+        overridePendingTransition(R.anim.back_right_in, R.anim.back_left_out)
 
         val login: EditText = findViewById(R.id.Loginreg)
         val password: EditText = findViewById(R.id.Passwordreg)
@@ -76,13 +77,25 @@ class Registration : AppCompatActivity() {
                 check = false
                 firstname.setError("Поле не заполнено")
             }
+            if(!firstname.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
+                check = false
+                firstname.setError("Поле принимает только кирилицу")
+            }
             if(name.text.toString().length <1 ){
                 check = false
                 name.setError("Поле не заполнено")
             }
+            if(!name.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
+                check = false
+                name.setError("Поле принимает только кирилицу")
+            }
             if(lastname.text.toString().length <1 ){
                 check = false
                 lastname.setError("Поле не заполнено")
+            }
+            if(!lastname.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
+                check = false
+                lastname.setError("Поле принимает только кирилицу")
             }
             if(serpas.text.toString().length <1){
                 check = false
@@ -103,6 +116,10 @@ class Registration : AppCompatActivity() {
             if(phone.text.toString().length < 1){
                 check = false
                 phone.setError("Поле не заполнено")
+            }
+            if(email.text.toString().length<1){
+                check=false
+                email.setError("Поле не заполнено")
             }
             if(check){
                // Toast.makeText(this, getBirthday(), Toast.LENGTH_SHORT).show()

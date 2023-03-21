@@ -1,5 +1,6 @@
 package com.example.trainsandroid
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,16 +14,26 @@ import javax.sql.CommonDataSource
 
 class MainActivity : AppCompatActivity() {
 
-
+    var anim: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+
         Paper.init(this)
         val login: EditText = findViewById(R.id.Login)
         val password: EditText = findViewById(R.id.Password)
         val regbutton: Button = findViewById(R.id.ToRegButton)
         val enterbutton: Button = findViewById(R.id.EnterButton)
+
+        var sharedPref = this?.getSharedPreferences("auth", MODE_PRIVATE) ?: return
+        val savedLogin = sharedPref?.getString("log", "")!!
+        val savedPassword = sharedPref?.getString("pas", "")!!
+        if(savedLogin.length > 0 && savedPassword.length > 0){
+            PostData(savedLogin, savedPassword)
+        }
+
+        overridePendingTransition(R.anim.right_in, R.anim.left_out)
 
         enterbutton.setOnClickListener{
             var check: Boolean = true
@@ -35,6 +46,13 @@ class MainActivity : AppCompatActivity() {
                 password.setError("Заполните поле")
             }
             if(check){
+                sharedPref = this?.getSharedPreferences("auth", MODE_PRIVATE) ?: return@setOnClickListener
+                with (sharedPref.edit()) {
+                    putString("log", login.text.toString())
+                    putString("pas", password.text.toString())
+                    apply()
+                }
+                anim = "true"
                  PostData(login.text.toString(), password.text.toString())
             }
         }

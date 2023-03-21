@@ -26,14 +26,16 @@ class TrainListAdapter (private val names: ArrayList<TrainsModel>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val trains: TrainsModel = names!![position]
+        var departDay = trains.depDayTrain.substring(0, 10)
+        var arrivDay = trains.arrDayTrain.substring(0,10)
         holder.num.text = trains.numTrain
-        holder.depCity.text = trains.depCityTrain
-        holder.arrCity.text = trains.arrCityTrain
-        holder.depDay.text = trains.depDayTrain
-        holder.arrDay.text = trains.arrDayTrain
+        holder.depCity.text = "Город отправления: " + trains.depCityTrain
+        holder.arrCity.text = "Город прибытия: " + trains.arrCityTrain
+        holder.depDay.text = "Дата отправления: " + departDay
+        holder.arrDay.text = "Дата прибытия: " + arrivDay
     }
 
     override fun getItemCount(): Int {
-        return names.size   
+        return names.size
     }
 }

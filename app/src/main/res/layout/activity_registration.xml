@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        />
 
     <ScrollView
         android:id="@+id/scroll"
@@ -254,7 +255,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone"
                 android:layout_marginTop="30dp"
-                android:hint="Почта (не обязательно)"
+                android:hint="Почта"
                 android:backgroundTint="@color/red"
                 android:textColorHint="@color/dark_red"
                 android:inputType="textMultiLine"
