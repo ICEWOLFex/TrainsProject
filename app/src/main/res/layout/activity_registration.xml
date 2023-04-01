@@ -224,7 +224,7 @@
                 android:hint="Код подразделения"
                 android:backgroundTint="@color/red"
                 android:textColorHint="@color/dark_red"
-                android:inputType="textMultiLine"
+                android:inputType="number"
                 android:lines="1"
                 android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
                 android:maxLength="7"
@@ -242,7 +242,8 @@
                 android:hint="Номер телефона"
                 android:backgroundTint="@color/red"
                 android:textColorHint="@color/dark_red"
-                android:inputType="textMultiLine"
+                android:inputType="number"
+                android:maxLength="16"
                 android:lines="1"
                 android:drawableLeft="@drawable/ic_baseline_phone_24"
                 />

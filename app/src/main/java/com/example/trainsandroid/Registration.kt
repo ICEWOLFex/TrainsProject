@@ -2,15 +2,20 @@ package com.example.trainsandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent.*
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+
 
 class Registration : AppCompatActivity() {
 
@@ -41,7 +46,62 @@ class Registration : AppCompatActivity() {
         val residence: EditText = findViewById(R.id.recedence)
 
         val issuedcode:EditText = findViewById(R.id.issuedcode)
+
+        issuedcode.isCursorVisible = false
+        issuedcode.addTextChangedListener (object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) { }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                issuedcode.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+                    if(issuedcode.text.toString().length == 3) {
+                        issuedcode.setText("$s-")
+                        issuedcode.setSelection(issuedcode.text.length)
+                    }
+                    if(keyCode == KEYCODE_DEL){
+                        issuedcode.text.clear()
+                    }
+                    var consumed = false
+                    consumed
+                })
+
+            }
+
+        })
+
         val phone: EditText = findViewById(R.id.phone)
+
+        phone.isCursorVisible = false
+        phone.addTextChangedListener(object:TextWatcher{
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                phone.setSelection(phone.text.length)
+                phone.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+                    if(phone.text.toString().length==1){
+                        phone.setText("+7($s")
+                    }
+                    if(phone.text.toString().length==6){
+                        phone.setText("$s)")
+                    }
+                    if(phone.text.toString().length==10){
+                        phone.setText("$s-")
+                    }
+                    if(phone.text.toString().length==13){
+                        phone.setText("$s-")
+                    }
+                    if(keyCode == KEYCODE_DEL){
+                        phone.text.clear()
+                    }
+                    var consumed = false
+                    consumed
+                })
+            }
+        })
+
         val email: EditText = findViewById(R.id.email)
         val registration: Button = findViewById(R.id.registration)
         registration.setOnClickListener{
@@ -121,9 +181,10 @@ class Registration : AppCompatActivity() {
                 check=false
                 email.setError("Поле не заполнено")
             }
+            if(!email.text.any{it in "@."}){
+                email.setError("Некоректный формат")
+            }
             if(check){
-               // Toast.makeText(this, getBirthday(), Toast.LENGTH_SHORT).show()
-               // Toast.makeText(this, getIssuedday(), Toast.LENGTH_SHORT).show()
                 PostData(login.text.toString(), password.text.toString(), firstname.text.toString(), name.text.toString(), lastname.text.toString(), serpas.text.toString(), numpas.text.toString(), getBirthday(), residence.text.toString(), getIssuedday(), issuedcode.text.toString(), phone.text.toString(), email.text.toString())
             }
         }
@@ -164,7 +225,6 @@ class Registration : AppCompatActivity() {
             }
         }
             return datebirth
-        //return date
     }
 
     fun getIssuedday(): String{

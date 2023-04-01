@@ -27,4 +27,16 @@ interface API {
     @GET("Trains/Search")
     fun getSearchingTrains(@Query ("depCity") depart: String, @Query ("arrCity") arrival:String, @Header("Authorization") token: String):
             Call<ArrayList<TrainsModel>>
+
+    @POST("Orders")
+    fun createOrder(@Body orderModel: OrderModel, @Header("Authorization") token: String):
+            Call<OrderModel>
+
+    @GET("Services")
+    fun getServicesList(@Header("Authorization") token: String):
+            Call<ServicesModel>
+
+    @PUT("Clients/{id}")
+    fun updateClientsData(@Path("id") id: Int, @Body clientsModel: ClientsModel, @Header("Authorization") token: String):
+            Call<ClientsModel>
 }

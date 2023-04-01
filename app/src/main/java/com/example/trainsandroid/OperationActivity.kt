@@ -35,6 +35,7 @@ class OperationActivity : AppCompatActivity() {
         val ar: EditText = findViewById(R.id.arrival_city)
 
         overridePendingTransition(R.anim.right_in, R.anim.left_out)
+        getData()
 
         exit.setOnClickListener{
             val sharedPref = this?.getSharedPreferences("auth", MODE_PRIVATE) ?: return@setOnClickListener
@@ -53,26 +54,42 @@ class OperationActivity : AppCompatActivity() {
         }
 
         search.setOnClickListener{
-            val getSearchTrains: Call<ArrayList<TrainsModel>> = apiInterface.getSearchingTrains(dep.text.toString(), ar.text.toString(), "Bearer " + token!!.token)
-            getSearchTrains.enqueue(object:Callback<ArrayList<TrainsModel>>{
-                override fun onResponse(
-                    call: Call<ArrayList<TrainsModel>>,
-                    response: Response<ArrayList<TrainsModel>>
-                ) {
-                    if(response.isSuccessful){
-                        val listTrains: ArrayList<TrainsModel> = response.body()!!
-                        list.layoutManager = LinearLayoutManager(applicationContext)
-                        val adapter = TrainListAdapter(listTrains)
-                        list.adapter = adapter
+            if(dep.text.toString().length>1 || ar.text.toString().length>1) {
+                val getSearchTrains: Call<ArrayList<TrainsModel>> = apiInterface.getSearchingTrains(
+                    dep.text.toString(),
+                    ar.text.toString(),
+                    "Bearer " + token!!.token
+                )
+                getSearchTrains.enqueue(object : Callback<ArrayList<TrainsModel>> {
+                    override fun onResponse(
+                        call: Call<ArrayList<TrainsModel>>,
+                        response: Response<ArrayList<TrainsModel>>
+                    ) {
+                        if (response.isSuccessful) {
+                            val listTrains: ArrayList<TrainsModel> = response.body()!!
+                            list.layoutManager = LinearLayoutManager(applicationContext)
+                            val adapter = TrainListAdapter(listTrains, applicationContext)
+                            list.adapter = adapter
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<ArrayList<TrainsModel>>, t: Throwable) {
+                    override fun onFailure(call: Call<ArrayList<TrainsModel>>, t: Throwable) {
 
-                }
-            })
+                    }
+                })
+            }
+            else{
+                getData()
+            }
         }
 
+
+    }
+
+    fun getData(){
+        val token: TokenModel? = Paper.book("token").read("token")
+        val list: RecyclerView = findViewById(R.id.trains_list)
+        val apiInterface = RequestBuilder.buildRequest().create(API::class.java)
         val getTrains: Call<ArrayList<TrainsModel>> = apiInterface.getTrainsList("Bearer " + token!!.token)
         getTrains.enqueue(object:Callback<ArrayList<TrainsModel>>{
             override fun onResponse(
@@ -82,7 +99,7 @@ class OperationActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     val listTrains: ArrayList<TrainsModel> = response.body()!!
                     list.layoutManager = LinearLayoutManager(applicationContext)
-                    val adapter = TrainListAdapter(listTrains)
+                    val adapter = TrainListAdapter(listTrains, applicationContext)
                     list.adapter = adapter
                 }
             }
