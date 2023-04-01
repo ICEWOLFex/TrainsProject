@@ -25,7 +25,7 @@ class MainProfile : AppCompatActivity() {
         overridePendingTransition(R.anim.back_right_in, R.anim.back_left_out)
 
         Paper.init(this)
-        val token: TokenModel? = Paper.book("token").read("token")
+        val token: TokenModel? = Paper.book("token").read("token")//s
 
         val fromProfile: ImageButton = findViewById(R.id.from_profile)
         fromProfile.setOnClickListener{
