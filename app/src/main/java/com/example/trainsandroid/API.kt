@@ -34,9 +34,17 @@ interface API {
 
     @GET("Services")
     fun getServicesList(@Header("Authorization") token: String):
-            Call<ServicesModel>
+            Call<ArrayList<ServicesModel>>
 
     @PUT("Clients/{id}")
     fun updateClientsData(@Path("id") id: Int, @Body clientsModel: ClientsModel, @Header("Authorization") token: String):
             Call<ClientsModel>
+
+    @GET("Orders/ClientsOrder")
+    fun getClientsOrders(@Query ("idClient") id: Int, @Header("Authorization") token: String):
+            Call<ArrayList<OrderModel>>
+
+    @GET("Orders")
+    fun checkSits(@Header("Authorization") token: String):
+            Call<ArrayList<OrderModel>>
 }

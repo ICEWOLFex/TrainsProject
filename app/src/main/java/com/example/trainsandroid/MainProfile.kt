@@ -25,7 +25,7 @@ class MainProfile : AppCompatActivity() {
         overridePendingTransition(R.anim.back_right_in, R.anim.back_left_out)
 
         Paper.init(this)
-        val token: TokenModel? = Paper.book("token").read("token")//s
+        val token: TokenModel? = Paper.book("token").read("token")
 
         val fromProfile: ImageButton = findViewById(R.id.from_profile)
         fromProfile.setOnClickListener{
@@ -105,29 +105,29 @@ class MainProfile : AppCompatActivity() {
                                     })
                                 }
                                 else{
-                                    if(firstnametext.text.toString().length < 1){
-                                        firstnametext.setError("Поле не может быть пустым")
-                                    }
                                     if(!firstnametext.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
-                                        firstnametext.setError("Поле принимает только кирилицу")
+                                        firstnametext.error = "Поле принимает только кирилицу"
                                     }
-                                    if(nametext.text.toString().length < 1){
-                                        nametext.setError("Поле не может быть пустым")
+                                    if(firstnametext.text.toString().isEmpty()){
+                                        firstnametext.error = "Поле не может быть пустым"
                                     }
                                     if(!nametext.text.any{it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"}){
-                                        nametext.setError("Поле принимает только кирилицу")
+                                        nametext.error = "Поле принимает только кирилицу"
                                     }
-                                    if(lastnametext.text.toString().length < 1){
-                                        lastnametext.setError("Поле не может быть пустым")
+                                    if(nametext.text.toString().isEmpty()){
+                                        nametext.error = "Поле не может быть пустым"
                                     }
                                     if(!lastnametext.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
-                                        lastnametext.setError("Поле принимает только кирилицу")
+                                        lastnametext.error = "Поле принимает только кирилицу"
                                     }
-                                    if(emailtext.text.toString().length < 1){
-                                        emailtext.setError("Поле не может быть пустым")
+                                    if(lastnametext.text.toString().isEmpty()){
+                                        lastnametext.error = "Поле не может быть пустым"
                                     }
                                     if(!emailtext.text.any{it in "@."}){
-                                        emailtext.setError("Некоректный формат")
+                                        emailtext.error = "Некоректный формат"
+                                    }
+                                    if(emailtext.text.toString().isEmpty()){
+                                        emailtext.error = "Поле не может быть пустым"
                                     }
                                     Toast.makeText(
                                         applicationContext,"Что-то пошло не так", Toast.LENGTH_SHORT).show()

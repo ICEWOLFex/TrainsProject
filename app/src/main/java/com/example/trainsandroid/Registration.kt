@@ -54,20 +54,18 @@ class Registration : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                issuedcode.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-                    if(issuedcode.text.toString().length == 3) {
+                issuedcode.setOnKeyListener { v, keyCode, event ->
+                    if (issuedcode.text.toString().length == 3) {
                         issuedcode.setText("$s-")
                         issuedcode.setSelection(issuedcode.text.length)
                     }
-                    if(keyCode == KEYCODE_DEL){
+                    if (keyCode == KEYCODE_DEL) {
                         issuedcode.text.clear()
                     }
                     var consumed = false
                     consumed
-                })
-
+                }
             }
-
         })
 
         val phone: EditText = findViewById(R.id.phone)
@@ -80,25 +78,25 @@ class Registration : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 phone.setSelection(phone.text.length)
-                phone.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-                    if(phone.text.toString().length==1){
+                phone.setOnKeyListener { v, keyCode, event ->
+                    if (phone.text.toString().length == 1) {
                         phone.setText("+7($s")
                     }
-                    if(phone.text.toString().length==6){
+                    if (phone.text.toString().length == 6) {
                         phone.setText("$s)")
                     }
-                    if(phone.text.toString().length==10){
+                    if (phone.text.toString().length == 10) {
                         phone.setText("$s-")
                     }
-                    if(phone.text.toString().length==13){
+                    if (phone.text.toString().length == 13) {
                         phone.setText("$s-")
                     }
-                    if(keyCode == KEYCODE_DEL){
+                    if (keyCode == KEYCODE_DEL) {
                         phone.text.clear()
                     }
                     var consumed = false
                     consumed
-                })
+                }
             }
         })
 
@@ -106,83 +104,99 @@ class Registration : AppCompatActivity() {
         val registration: Button = findViewById(R.id.registration)
         registration.setOnClickListener{
             var check: Boolean = true
-            if(login.text.toString().length < 1){
-                check = false
-                login.setError("Поле не заполнено")
+            if(login.text.toString().length in 1..3){
+                login.error = "Логин должен содержать не менее 4 символов"
             }
-            if(login.text.toString().length > 0 && login.text.toString().length < 3){
-                login.setError("Логин должен содержать не менее 4 символов")
-            }
-            if(password.text.toString().length < 1){
+            if(login.text.toString().isEmpty()){
                 check = false
-                password.setError("Поле не заполнено")
+                login.error = "Поле не заполнено"
             }
             if(!password.text.any {it in "1234567890"}){
                 check = false
-                password.setError("Пароль должен содержать цифры, заглавные и прописные латинские буквы")
+                password.error = "Пароль должен содержать цифры, заглавные и прописные латинские буквы"
             }
             if(!password.text.any {it in "qwertyuiopasdfghjklzxcvbnm"}){
                 check = false
-                password.setError("Пароль должен содержать цифры, заглавные и прописные латинские буквы")
+                password.error = "Пароль должен содержать цифры, заглавные и прописные латинские буквы"
             }
             if(!password.text.any {it in "QWERTYUIOPASDFGHJKLZXCVBNM"}){
                 check = false
-                password.setError("Пароль должен содержать цифры, заглавные и прописные латинские буквы")
+                password.error = "Пароль должен содержать цифры, заглавные и прописные латинские буквы"
             }
-            if(password.text.toString().length > 0 && password.text.toString().length < 8){
+            if(password.text.toString().length in 1..7){
                 check = false
-                password.setError("Пароль должен содержать не менее 8 символов")
+                password.error = "Пароль должен содержать не менее 8 символов"
             }
-            if(firstname.text.toString().length <1 ){
+            if(password.text.toString().isEmpty()){
                 check = false
-                firstname.setError("Поле не заполнено")
+                password.error = "Поле не заполнено"
             }
             if(!firstname.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
                 check = false
-                firstname.setError("Поле принимает только кирилицу")
+                firstname.error = "Поле принимает только кирилицу"
             }
-            if(name.text.toString().length <1 ){
+            if(firstname.text.toString().isEmpty()){
                 check = false
-                name.setError("Поле не заполнено")
+                firstname.error = "Поле не заполнено"
             }
             if(!name.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
                 check = false
-                name.setError("Поле принимает только кирилицу")
+                name.error = "Поле принимает только кирилицу"
             }
-            if(lastname.text.toString().length <1 ){
+            if(name.text.toString().isEmpty()){
                 check = false
-                lastname.setError("Поле не заполнено")
+                name.error = "Поле не заполнено"
             }
             if(!lastname.text.any { it in "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ" }){
                 check = false
-                lastname.setError("Поле принимает только кирилицу")
+                lastname.error = "Поле принимает только кирилицу"
             }
-            if(serpas.text.toString().length <1){
+            if(lastname.text.toString().isEmpty()){
                 check = false
-                serpas.setError("Поле не заполнено")
+                lastname.error = "Поле не заполнено"
             }
-            if(numpas.text.toString().length <1){
+            if(serpas.text.toString().length != 4){
                 check = false
-                numpas.setError("Поле не заполнено")
+                serpas.error = "Некорректные данные"
             }
-            if(residence.text.toString().length <1){
+            if(serpas.text.toString().isEmpty()){
                 check = false
-                residence.setError("Поле не заполнено")
+                serpas.error = "Поле не заполнено"
             }
-            if(issuedcode.text.toString().length <1){
+            if(numpas.text.toString().length != 6){
+                check=false
+                numpas.error = "Некорректные данные"
+            }
+            if(numpas.text.toString().isEmpty()){
                 check = false
-                issuedcode.setError("Поле не заполнено")
+                numpas.error = "Поле не заполнено"
             }
-            if(phone.text.toString().length < 1){
+            if(residence.text.toString().isEmpty()){
                 check = false
-                phone.setError("Поле не заполнено")
+                residence.error = "Поле не заполнено"
             }
-            if(email.text.toString().length<1){
+            if(issuedcode.text.toString().isEmpty()){
+                check = false
+                issuedcode.error = "Поле не заполнено"
+            }
+            if(issuedcode.text.toString().length !=7){
+                check=false
+                issuedcode.error = "Некорректные данные"
+            }
+            if(phone.text.toString().isEmpty()){
+                check = false
+                phone.error = "Поле не заполнено"
+            }
+            if(phone.text.toString().length != 16){
+                check=false
+                phone.error = "Некорректные данные"
+            }
+            if(email.text.toString().isEmpty()){
                 check=false
                 email.setError("Поле не заполнено")
             }
-            if(!email.text.any{it in "@."}){
-                email.setError("Некоректный формат")
+            if(!email.text.any{it in "@"} && !email.text.any{it in "."}){
+                email.error = "Некоректный формат"
             }
             if(check){
                 PostData(login.text.toString(), password.text.toString(), firstname.text.toString(), name.text.toString(), lastname.text.toString(), serpas.text.toString(), numpas.text.toString(), getBirthday(), residence.text.toString(), getIssuedday(), issuedcode.text.toString(), phone.text.toString(), email.text.toString())
@@ -190,10 +204,10 @@ class Registration : AppCompatActivity() {
         }
     }
 
-    fun getBirthday(): String{
+    private fun getBirthday(): String{
         val birthday: DatePicker = findViewById(R.id.birthday)
         val thisYear = birthday.year
-        val thisMonth = birthday.month
+        val thisMonth = birthday.month + 1
         val thisDay = birthday.dayOfMonth
         if(thisMonth.toString().length==2 && thisDay.toString().length==2){
             datebirth = "$thisYear-$thisMonth-$thisDay"
@@ -209,7 +223,7 @@ class Registration : AppCompatActivity() {
         }
         val today = Calendar.getInstance()
         birthday.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)) { view, year, month, day ->
+            today.get(Calendar.DAY_OF_MONTH)) { _, year, month, day ->
             val month = month + 1
             if(month.toString().length == 2 && day.toString().length ==2) {
                 datebirth = "$year-$month-$day"
@@ -227,10 +241,10 @@ class Registration : AppCompatActivity() {
             return datebirth
     }
 
-    fun getIssuedday(): String{
+    private fun getIssuedday(): String{
         val issuedday: DatePicker = findViewById(R.id.issuedday)
         val thisYear = issuedday.year
-        val thisMonth = issuedday.month
+        val thisMonth = issuedday.month + 1
         val thisDay = issuedday.dayOfMonth
         if(thisMonth.toString().length==2 && thisDay.toString().length==2){
             dateissued = "$thisYear-$thisMonth-$thisDay"
@@ -246,7 +260,7 @@ class Registration : AppCompatActivity() {
         }
         val today = Calendar.getInstance()
         issuedday.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)) { view, year, month, day ->
+            today.get(Calendar.DAY_OF_MONTH)) { _, year, month, day ->
             val month = month + 1
             if(month.toString().length == 2 && day.toString().length ==2) {
                 dateissued = "$year-$month-$day"
@@ -262,10 +276,9 @@ class Registration : AppCompatActivity() {
             }
         }
         return dateissued
-        //return date
     }
 
-    fun PostData(log:String, pas:String, first:String, nm:String, last:String, ser:String, num:String, birth: String, res:String, issday:String, isscode:String, phn:String, mail:String){
+    private fun PostData(log:String, pas:String, first:String, nm:String, last:String, ser:String, num:String, birth: String, res:String, issday:String, isscode:String, phn:String, mail:String){
         val login: EditText = findViewById(R.id.Loginreg)
         val password: EditText = findViewById(R.id.Passwordreg)
         val firstname: EditText = findViewById(R.id.firstname)

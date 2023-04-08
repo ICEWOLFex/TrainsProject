@@ -12,4 +12,6 @@
     <color name="red">#EA8A8A</color>
     <color name="dark_red">#E67A7A</color>
     <color name="text">#40514E</color>
+    <color name="selected">#8B0000</color>
+    <color name="blocked">#A9A9A9</color>
 </resources>

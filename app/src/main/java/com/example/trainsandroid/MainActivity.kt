@@ -13,8 +13,6 @@ import retrofit2.*
 import javax.sql.CommonDataSource
 
 class MainActivity : AppCompatActivity() {
-
-    var anim: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,14 +27,14 @@ class MainActivity : AppCompatActivity() {
         var sharedPref = this?.getSharedPreferences("auth", MODE_PRIVATE) ?: return
         val savedLogin = sharedPref?.getString("log", "")!!
         val savedPassword = sharedPref?.getString("pas", "")!!
-        if(savedLogin.length > 0 && savedPassword.length > 0){
+        if(savedLogin.isNotEmpty() && savedPassword.isNotEmpty()){
             PostData(savedLogin, savedPassword)
         }
 
         overridePendingTransition(R.anim.right_in, R.anim.left_out)
 
         enterbutton.setOnClickListener{
-            var check: Boolean = true
+            var check = true
             if(login.text.length < 1){
                 check = false
                 login.setError("Заполните поле")
@@ -52,8 +50,7 @@ class MainActivity : AppCompatActivity() {
                     putString("pas", password.text.toString())
                     apply()
                 }
-                anim = "true"
-                 PostData(login.text.toString(), password.text.toString())
+                PostData(login.text.toString(), password.text.toString())
             }
         }
 
@@ -63,15 +60,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun PostData(log: String, pas: String){
-        val login: EditText = findViewById(R.id.Login)
-        val password: EditText = findViewById(R.id.Password)
         val apiInterface = RequestBuilder.buildRequest().create(API::class.java)
 
         val accauntsModel = AccauntsModel(0,log, pas, "string", 0, 0)
         val call: Call<TokenModel> = apiInterface.authAccaunt(accauntsModel)
         call.enqueue(object:Callback<TokenModel>{
             override fun onFailure(call: Call<TokenModel>, t: Throwable) {
-                login.setError("Пользовтаель не найден")
+                Toast.makeText(
+                    applicationContext,
+                    "Отсутствует подключение  к интернету",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onResponse(call: Call<TokenModel>, response: Response<TokenModel>) {
@@ -81,7 +80,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else{
-                    password.setError("Неверный логин или пароль")
+                    Toast.makeText(
+                        applicationContext,
+                        "Неверный логин или пароль",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
