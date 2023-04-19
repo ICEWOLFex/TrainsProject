@@ -1,6 +1,5 @@
 package com.example.trainsandroid
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,9 +7,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.trainsandroid.api.API
+import com.example.trainsandroid.api.RequestBuilder
+import com.example.trainsandroid.models.AccauntsModel
+import com.example.trainsandroid.models.TokenModel
 import io.paperdb.Paper
 import retrofit2.*
-import javax.sql.CommonDataSource
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,9 +77,18 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<TokenModel>, response: Response<TokenModel>) {
                 if(response.isSuccessful){
-                    Paper.book("token").write("token", response.body()!!)
-                    val intent = Intent(applicationContext, OperationActivity::class.java)
-                    startActivity(intent)
+                    if(response.body()!!.roleId == 2) {
+                        Paper.book("token").write("token", response.body()!!)
+                        val intent = Intent(applicationContext, OperationActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(
+                            applicationContext,
+                            "Вы не можете пользоваться приложением с аккаунта администратора",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
                 else{
                     Toast.makeText(

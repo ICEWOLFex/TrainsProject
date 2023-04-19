@@ -1,5 +1,6 @@
-package com.example.trainsandroid
+package com.example.trainsandroid.api
 
+import com.example.trainsandroid.models.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -47,4 +48,8 @@ interface API {
     @GET("Orders")
     fun checkSits(@Header("Authorization") token: String):
             Call<ArrayList<OrderModel>>
+
+    @GET("Trains/{id}")
+    fun getOrderTrains(@Path("id") id: Int, @Header("Authorization") token: String):
+            Call<TrainsModel>
 }

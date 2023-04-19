@@ -1,4 +1,4 @@
-package com.example.trainsandroid
+package com.example.trainsandroid.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trainsandroid.CreateOrderActivity
+import com.example.trainsandroid.R
+import com.example.trainsandroid.models.TrainsModel
 import io.paperdb.Paper
-import java.lang.reflect.Array.get
-import kotlin.coroutines.coroutineContext
 
 
 class TrainListAdapter (private val names: ArrayList<TrainsModel>, private val context: Context) :

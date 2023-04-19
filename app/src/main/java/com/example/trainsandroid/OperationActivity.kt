@@ -1,17 +1,19 @@
 package com.example.trainsandroid
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.system.Os.remove
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trainsandroid.adapters.TrainListAdapter
+import com.example.trainsandroid.api.API
+import com.example.trainsandroid.api.RequestBuilder
+import com.example.trainsandroid.models.TokenModel
+import com.example.trainsandroid.models.TrainsModel
 import io.paperdb.Paper
 import retrofit2.Call
 import retrofit2.Callback

@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
+import com.example.trainsandroid.api.API
+import com.example.trainsandroid.api.RequestBuilder
+import com.example.trainsandroid.models.RegistrationModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -175,28 +177,28 @@ class Registration : AppCompatActivity() {
                 check = false
                 residence.error = "Поле не заполнено"
             }
-            if(issuedcode.text.toString().isEmpty()){
-                check = false
-                issuedcode.error = "Поле не заполнено"
-            }
             if(issuedcode.text.toString().length !=7){
                 check=false
                 issuedcode.error = "Некорректные данные"
             }
-            if(phone.text.toString().isEmpty()){
+            if(issuedcode.text.toString().isEmpty()){
                 check = false
-                phone.error = "Поле не заполнено"
+                issuedcode.error = "Поле не заполнено"
             }
             if(phone.text.toString().length != 16){
                 check=false
                 phone.error = "Некорректные данные"
             }
-            if(email.text.toString().isEmpty()){
-                check=false
-                email.setError("Поле не заполнено")
+            if(phone.text.toString().isEmpty()){
+                check = false
+                phone.error = "Поле не заполнено"
             }
             if(!email.text.any{it in "@"} && !email.text.any{it in "."}){
                 email.error = "Некоректный формат"
+            }
+            if(email.text.toString().isEmpty()){
+                check=false
+                email.setError("Поле не заполнено")
             }
             if(check){
                 PostData(login.text.toString(), password.text.toString(), firstname.text.toString(), name.text.toString(), lastname.text.toString(), serpas.text.toString(), numpas.text.toString(), getBirthday(), residence.text.toString(), getIssuedday(), issuedcode.text.toString(), phone.text.toString(), email.text.toString())

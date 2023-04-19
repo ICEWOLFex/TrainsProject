@@ -127,4 +127,19 @@
         android:width="170dp"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/to_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SaveChange"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/default_button"
+        android:textSize="17dp"
+        android:text="Корзина"
+        android:textColor="@color/red"
+        android:width="200dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,9 @@
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="31">
         <activity
+            android:name=".OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateOrderActivity"
             android:exported="false" />
         <activity

@@ -1,4 +1,4 @@
-package com.example.trainsandroid
+package com.example.trainsandroid.models
 
 data class ServicesModel(
     val idServices: Int,

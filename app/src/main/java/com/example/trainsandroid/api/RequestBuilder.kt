@@ -1,4 +1,4 @@
-package com.example.trainsandroid
+package com.example.trainsandroid.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

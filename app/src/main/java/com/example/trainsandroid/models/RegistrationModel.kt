@@ -1,4 +1,4 @@
-package com.example.trainsandroid
+package com.example.trainsandroid.models
 
 import java.util.*
 

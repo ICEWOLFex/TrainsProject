@@ -8,8 +8,11 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.ui.AppBarConfiguration
+import com.example.trainsandroid.api.API
+import com.example.trainsandroid.api.RequestBuilder
+import com.example.trainsandroid.models.AccauntsModel
+import com.example.trainsandroid.models.ClientsModel
+import com.example.trainsandroid.models.TokenModel
 import io.paperdb.Paper
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +29,12 @@ class MainProfile : AppCompatActivity() {
 
         Paper.init(this)
         val token: TokenModel? = Paper.book("token").read("token")
+
+        val order: Button = findViewById(R.id.to_orders)
+        order.setOnClickListener{
+            val intent = Intent(applicationContext, OrderActivity::class.java)
+            startActivity(intent)
+        }
 
         val fromProfile: ImageButton = findViewById(R.id.from_profile)
         fromProfile.setOnClickListener{
