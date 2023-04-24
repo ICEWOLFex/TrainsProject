@@ -6,6 +6,7 @@ data class OrderModel(
     val dateOrder: String,
     val carriageOrder: String,
     val sitOrder: String,
+    val priceOrder: String,
     val clientId: Int,
     val trainsId: Int,
     val servicesId: Int?

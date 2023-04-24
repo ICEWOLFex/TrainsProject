@@ -21,6 +21,7 @@ class TrainListAdapter (private val names: ArrayList<TrainsModel>, private val c
         val arrDay: TextView = itemView.findViewById(R.id.arr_date)
         val depCity: TextView = itemView.findViewById(R.id.dep_city)
         val arrCity: TextView = itemView.findViewById(R.id.arr_city)
+        val price: TextView = itemView.findViewById(R.id.price_train)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -40,6 +41,7 @@ class TrainListAdapter (private val names: ArrayList<TrainsModel>, private val c
         holder.arrCity.text = "Город прибытия: " + trains.arrCityTrain
         holder.depDay.text = "Дата отправления: " + departDay
         holder.arrDay.text = "Дата прибытия: " + arrivDay
+        holder.price.text = "Цена: " + trains.priceTrain
 
         holder.itemView.setOnClickListener{
             val intent = Intent(context.applicationContext, CreateOrderActivity::class.java)

@@ -80,7 +80,7 @@ class MainProfile : AppCompatActivity() {
                                         clientsModel.issuedDayClient,
                                         clientsModel.issuedCodeClient,
                                         clientsModel.phoneClient,
-                                        clientsModel.emailClient
+                                        emailtext.text.toString()
                                     )
                                     val call: Call<ClientsModel> = apiInterface.updateClientsData(
                                         id,
@@ -144,12 +144,12 @@ class MainProfile : AppCompatActivity() {
                             }
                     }
                     override fun onFailure(call: Call<ClientsModel>, t: Throwable) {
-
+                        Toast.makeText(applicationContext, "Отсутствует подключение", Toast.LENGTH_SHORT).show()
                     }
                 })
             }
             override fun onFailure(call: Call<AccauntsModel>, t: Throwable) {
-
+                Toast.makeText(applicationContext, "Отсутствует подключение", Toast.LENGTH_SHORT).show()
             }
         })
     }

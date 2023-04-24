@@ -12,6 +12,7 @@ import com.example.trainsandroid.models.ServicesModel
 import com.example.trainsandroid.models.TokenModel
 import com.example.trainsandroid.models.TrainsModel
 import io.paperdb.Paper
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +23,8 @@ class CreateOrderActivity : AppCompatActivity() {
     private var todayDate: String = ""
     private var servicesModel: ArrayList<ServicesModel>? = null
     var servId: Int = 0
+    var fullPrice: Int = 0
+    var servPrice: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_order)
@@ -37,6 +40,8 @@ class CreateOrderActivity : AppCompatActivity() {
         val info: TextView = findViewById(R.id.info)
         var cariege: Int? = null
         var sit: Int? = null
+        val price: TextView = findViewById(R.id.price)
+        val priceserv: TextView = findViewById(R.id.price_serv)
 
         val create: Button = findViewById(R.id.create_order)
 
@@ -366,6 +371,8 @@ class CreateOrderActivity : AppCompatActivity() {
                 id: Long
             ) {
                 servId = servicesModel!![position].idServices
+                servPrice = servicesModel!![position].priceSevices.toInt()
+                priceserv.text = "Цена услуги: " + servicesModel!![position].priceSevices
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -386,6 +393,10 @@ class CreateOrderActivity : AppCompatActivity() {
         arrcity.text = "Город прибытия: " + trains?.arrCityTrain
         depday.text = "Дата отправления: " + trains?.depDayTrain?.substring(0,10)
         arrday.text = "Дата прибытия: " + trains?.arrDayTrain?.substring(0,10)
+
+        fullPrice+=trains?.priceTrain!!.toInt()
+
+        price.text = "Цена рейса: " + fullPrice
 
         create.setOnClickListener{
             if(cariege != null && sit != null){
@@ -448,7 +459,8 @@ class CreateOrderActivity : AppCompatActivity() {
         else{
             todayDate = Calendar.getInstance().get(Calendar.YEAR).toString() + "-" + Calendar.getInstance().get(Calendar.MONTH).toString() + "-" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
         }
-        val orderModel = OrderModel(0, "Не оплачено", todayDate, carriage, sit, token!!.idAccount, trains!!.idTrains, service)
+        fullPrice += servPrice
+        val orderModel = OrderModel(0, "Не оплачено", todayDate, carriage, sit, fullPrice.toString(), token!!.idAccount, trains!!.idTrains, service)
         val call: Call<OrderModel> = apiInterface.createOrder(orderModel, "Bearer " + token!!.token)
         call.enqueue(object:Callback<OrderModel>{
             override fun onResponse(call: Call<OrderModel>, response: Response<OrderModel>) {

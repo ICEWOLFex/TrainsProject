@@ -12,6 +12,7 @@ import com.example.trainsandroid.models.OrderTrainModel
 class OrderListAdapter (private val orderInfo: ArrayList<OrderTrainModel>, private val context: Context):
     RecyclerView.Adapter<OrderListAdapter.MyViewHolder>(){
         class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+            var id:Int = 0
             val num: TextView = itemView.findViewById(R.id.num_train_order)
             val depDay: TextView = itemView.findViewById(R.id.dep_date_order)
             val arrDay: TextView = itemView.findViewById(R.id.arr_date_order)
@@ -34,6 +35,7 @@ class OrderListAdapter (private val orderInfo: ArrayList<OrderTrainModel>, priva
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val order: OrderTrainModel = orderInfo[position]
+           // holder.num.text = order.idOrder.toString()
             holder.num.text = order.numTrain
             holder.depDay.text = "Дата отправления: " + order.depDayTrain.substring(0,10)
             holder.arrDay.text = "Дата прибытия: " +order.arrDayTrain.substring(0,10)
@@ -41,6 +43,7 @@ class OrderListAdapter (private val orderInfo: ArrayList<OrderTrainModel>, priva
             holder.arrCity.text = "Город прибытия: " +order.arrCityTrain
             holder.carriege.text = "Вагон: " + order.carriageOrder + "; "
             holder.sit.text = "Место: " + order.sitOrder
+
         }
     }
 

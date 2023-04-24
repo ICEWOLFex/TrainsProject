@@ -102,11 +102,33 @@
         android:textColor="@color/text"
         android:textSize="18dp"
         />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/arr_date_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/text"
+        android:textSize="18dp"
+        />
+
+    <TextView
+        android:id="@+id/price_serv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/text"
+        android:textSize="18dp"
+        />
     <TextView
         android:id="@+id/decor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/arr_date_data"
+        app:layout_constraintTop_toBottomOf="@+id/price_serv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/text"
@@ -360,7 +382,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info3"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/default_button"
         android:text="Создать заказ"
         android:textColor="@color/red" />

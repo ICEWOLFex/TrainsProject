@@ -52,4 +52,8 @@ interface API {
     @GET("Trains/{id}")
     fun getOrderTrains(@Path("id") id: Int, @Header("Authorization") token: String):
             Call<TrainsModel>
+
+    @DELETE("Orders/{id}")
+    fun deleteOrder(@Path("id") id: Int, @Header("Authorization") token: String):
+            Call<Void>
 }

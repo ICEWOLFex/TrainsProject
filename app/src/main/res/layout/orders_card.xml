@@ -106,10 +106,20 @@
             />
 
         <TextView
+            android:id="@+id/price_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/arr_date_order"
+            app:layout_constraintStart_toEndOf="@+id/carriege"
+            android:textColor="@color/text"
+            android:textSize="18dp"
+            />
+
+        <TextView
             android:id="@+id/decoo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/sit"
+            app:layout_constraintTop_toBottomOf="@+id/price_order"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/text"

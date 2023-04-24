@@ -8,5 +8,6 @@ data class TrainsModel(
     val depCityTrain: String,
     val arrCityTrain: String,
     val carriageOrder: String,
-    val sitOrder: String
+    val sitOrder: String,
+    val priceTrain: String
 )
