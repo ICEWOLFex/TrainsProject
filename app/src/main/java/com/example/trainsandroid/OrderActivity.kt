@@ -103,7 +103,7 @@ class OrderActivity : AppCompatActivity() {
                             response: Response<TrainsModel>
                         ) {
                             if(response.isSuccessful) {
-                                var train = OrderTrainModel(i.idOrder,response.body()!!.numTrain,response.body()!!.depDayTrain,response.body()!!.arrDayTrain,response.body()!!.depCityTrain,response.body()!!.arrCityTrain,i.carriageOrder,i.sitOrder,i.priceOrder)
+                                var train = OrderTrainModel(i.idOrder,response.body()!!.numTrain,response.body()!!.depDayTrain,response.body()!!.arrDayTrain,response.body()!!.depCityTrain,response.body()!!.arrCityTrain,i.carriageOrder,i.sitOrder,i.priceOrder, i.stateOrder)
                                 trains.add(train!!)
                                 list.layoutManager = LinearLayoutManager(applicationContext)
                                 adapter = OrderListAdapter(trains!!, applicationContext)

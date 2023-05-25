@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestBuilder {
-        private var URL = "http://192.168.176.36:5000/api/"
+        private var URL = "http://192.168.199.36:5000/api/"
         private var retrofit: Retrofit? = null
         fun buildRequest(): Retrofit {
             val logging = HttpLoggingInterceptor()

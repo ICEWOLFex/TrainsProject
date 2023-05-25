@@ -9,5 +9,6 @@ data class OrderTrainModel(
     var arrCityTrain: String,
     var carriageOrder: String,
     var sitOrder: String,
-    var priceOrder: String
+    var priceOrder: String,
+    var stateOrder: String
 )

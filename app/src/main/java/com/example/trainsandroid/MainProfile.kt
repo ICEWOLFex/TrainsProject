@@ -132,7 +132,10 @@ class MainProfile : AppCompatActivity() {
                                     if(lastnametext.text.toString().isEmpty()){
                                         lastnametext.error = "Поле не может быть пустым"
                                     }
-                                    if(!emailtext.text.any{it in "@."}){
+                                    if(!emailtext.text.any{it in "@"}){
+                                        emailtext.error = "Некоректный формат"
+                                    }
+                                    if(!emailtext.text.any{it in "."}){
                                         emailtext.error = "Некоректный формат"
                                     }
                                     if(emailtext.text.toString().isEmpty()){

@@ -194,11 +194,12 @@ class Registration : AppCompatActivity() {
                 phone.error = "Поле не заполнено"
             }
             if(!email.text.any{it in "@"} && !email.text.any{it in "."}){
+                check = false
                 email.error = "Некоректный формат"
             }
             if(email.text.toString().isEmpty()){
                 check=false
-                email.setError("Поле не заполнено")
+                email.error = "Поле не заполнено"
             }
             if(check){
                 PostData(login.text.toString(), password.text.toString(), firstname.text.toString(), name.text.toString(), lastname.text.toString(), serpas.text.toString(), numpas.text.toString(), getBirthday(), residence.text.toString(), getIssuedday(), issuedcode.text.toString(), phone.text.toString(), email.text.toString())

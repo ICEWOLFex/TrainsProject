@@ -460,7 +460,7 @@ class CreateOrderActivity : AppCompatActivity() {
             todayDate = Calendar.getInstance().get(Calendar.YEAR).toString() + "-" + Calendar.getInstance().get(Calendar.MONTH).toString() + "-" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
         }
         fullPrice += servPrice
-        val orderModel = OrderModel(0, "Не оплачено", todayDate, carriage, sit, fullPrice.toString(), token!!.idAccount, trains!!.idTrains, service)
+        val orderModel = OrderModel(0, "Не оплачено", todayDate, carriage, sit, fullPrice.toString(), token!!.idAccount, trains!! .idTrains, service)
         val call: Call<OrderModel> = apiInterface.createOrder(orderModel, "Bearer " + token!!.token)
         call.enqueue(object:Callback<OrderModel>{
             override fun onResponse(call: Call<OrderModel>, response: Response<OrderModel>) {
